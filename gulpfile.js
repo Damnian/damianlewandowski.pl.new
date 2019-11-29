@@ -33,7 +33,8 @@ var paths = {
   tmpJS: 'tmp/**/*.js',
   //
   dest: 'dest',
-  destIndex: 'dest/index.html',
+  // destIndex: 'dest/index.html',
+  destHTML: 'dest/**/*.html',
   destCSS: 'dest/**/*.css',
   destJS: 'dest/**/*.js'
 };
@@ -61,11 +62,41 @@ gulp.task('css', function () {
   return gulp.src(paths.srcCSS).pipe(gulp.dest(paths.tmp));
 });
 
+gulp.task('dest:css', function () {
+  return gulp.src(paths.tmpCSS)
+  	.pipe(cleanCSS())
+  	.pipe(gulp.dest(paths.dest));
+});
+
 gulp.task('js', function () {
   return gulp.src(paths.srcJS).pipe(gulp.dest(paths.tmp));
 });
 
+gulp.task('dest:js', function () {
+  return gulp.src(paths.tmpJS)
+  	.pipe(uglify())
+  	.pipe(gulp.dest(paths.dest));
+});
+
+gulp.task('img', function () {
+	return gulp.src('src/assets/img/*').pipe(gulp.dest('tmp/assets/img'))
+});
+
+gulp.task('dest:img', function () {
+	return gulp.src('src/assets/img/*')
+		.pipe(imagemin([
+			pngquant({
+				quality: [0.7, 0.9],
+				strip: true
+			}),
+			mozjpeg({quality: 70})
+			]))
+		.pipe(gulp.dest('dest/assets/img'))
+});
+
 gulp.task('copy', gulp.parallel('html', 'css', 'js'));
+
+gulp.task('dest:copy', gulp.parallel('dest:html', 'dest:css', 'dest:js'));
 
 gulp.task('inject', gulp.series('copy', function () {
   var css = gulp.src(paths.tmpCSS);
@@ -80,22 +111,25 @@ gulp.task('inject', gulp.series('copy', function () {
     .pipe(gulp.dest(paths.tmp));
 }));
 
-gulp.task('img', function(){
-	return gulp.src('src/assets/img/*')
-		.pipe(imagemin([
-			pngquant({
-				quality: [0.7, 0.9],
-				strip: true
-			}),
-			mozjpeg({quality: 70})
-			]))
-		.pipe(gulp.dest('tmp/assets/img'))
-});
+gulp.task('dest:inject', gulp.series('dest:copy', function () {
+  var css = gulp.src(paths.destCSS);
+  var js = gulp.src(paths.destJS);
+  return gulp.src(paths.destHTML)
+    .pipe(inject( css, {
+    	relative:true
+    }))
+    .pipe(inject( js, {
+    	relative:true
+    }))
+    .pipe(gulp.dest(paths.dest));
+}));
 
 // śledzenie zmian w plikach .scss i html, kompilacja scss i kopiowanie na bieżąco do tmp
-gulp.task('watch', (function() {
-	gulp.watch(['src/assets/scss/**/*.scss', 'src/*.html'], gulp.series('sass', 'inject'))
-}));
+gulp.task('watch', function() {
+	gulp.watch(['src/assets/scss/**/*.scss', 'src/*.html'], gulp.series('sass', 'inject', 'img'))
+});
+
+gulp.task('build', gulp.series('dest:inject', 'dest:img'));
 
 
 
@@ -103,6 +137,6 @@ gulp.task('watch', (function() {
 // gulp.task('default', gulp.series('copy', 'inject'));
 
 // hehe XD 
-gulp.task('clean', function() {
-	return gulp.src('dist').pipe(clean())
-});
+// gulp.task('clean', function() {
+// 	return gulp.src('dist').pipe(clean())
+// });
