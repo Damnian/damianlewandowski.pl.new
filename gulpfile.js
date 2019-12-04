@@ -43,7 +43,11 @@ gulp.task('sass', function() {
 	return gulp.src('src/assets/scss/**/*.scss')
 		.pipe(sass().on('error', sass.logError))
 		.pipe(autoprefixer({
-			browserlist: ['last 3 versions']
+			overrideBrowserslist: [
+        'last 3 versions'
+      ],
+      cascade: false,
+      grid: true
 		}))
 		.pipe(gulp.dest('src/assets/css'))
 });
@@ -126,7 +130,7 @@ gulp.task('dest:inject', gulp.series('dest:copy', function () {
 
 // śledzenie zmian w plikach .scss i html, kompilacja scss i kopiowanie na bieżąco do tmp
 gulp.task('watch', function() {
-	gulp.watch(['src/assets/scss/**/*.scss', 'src/*.html'], gulp.series('sass', 'inject', 'img'))
+	gulp.watch(['src/assets/scss/**/*.scss', 'src/*.html'], gulp.series('sass', 'inject'))
 });
 
 gulp.task('build', gulp.series('dest:inject', 'dest:img'));

@@ -1,0 +1,7 @@
+@mixin transition ($proporties) {
+  transition: $proporties;
+}
+
+@mixin transform ($proporties) {
+  transform: $proporties;
+}

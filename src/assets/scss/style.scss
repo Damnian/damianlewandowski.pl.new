@@ -1,13 +1,23 @@
+@import "colors";
+@import "mixins";
+
+
 html {
-	font-size: 15px;
+	box-sizing: border-box;	
 }
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
 body {
-	color: white;
+	margin: 0;
 }
+
+nav {
+
+}
+
 header {
-	display: flex;
-}
-footer {
-	height: 10px;
-	width: 100%;
+
 }
