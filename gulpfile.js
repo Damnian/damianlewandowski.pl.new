@@ -102,7 +102,7 @@ gulp.task('copy', gulp.parallel('html', 'css', 'js'));
 
 gulp.task('dest:copy', gulp.parallel('dest:html', 'dest:css', 'dest:js'));
 
-gulp.task('inject', gulp.series('copy', function () {
+gulp.task('inject', gulp.series('sass', 'copy', function () {
   var css = gulp.src(paths.tmpCSS);
   var js = gulp.src(paths.tmpJS);
   return gulp.src(paths.tmpHTML)

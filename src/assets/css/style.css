@@ -8,3 +8,9 @@ html {
 
 body {
   margin: 0; }
+
+header {
+  height: 100vh;
+  background: #4563cd;
+  background: -o-linear-gradient(315deg, #4563cd 0%, #ee6851 25%, #f79f4f 75%, #f3c42e 100%);
+  background: linear-gradient(135deg, #4563cd 0%, #ee6851 25%, #f79f4f 75%, #f3c42e 100%); }

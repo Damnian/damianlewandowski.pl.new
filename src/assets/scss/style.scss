@@ -19,5 +19,7 @@ nav {
 }
 
 header {
-
+	height: 100vh;
+	background: rgb(69,99,205);
+	background: linear-gradient(135deg, rgba(69,99,205,1) 0%, rgba(238,104,81,1) 25%, rgba(247,159,79,1) 75%, rgba(243,196,46,1) 100%);
 }
