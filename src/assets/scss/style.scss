@@ -1,21 +1,12 @@
 @import "colors";
 @import "mixins";
+@import "default";
+@import "grid";
 
-
-html {
-	box-sizing: border-box;	
-}
-
-*, *:before, *:after {
-	box-sizing: inherit;
-}
-
-body {
-	margin: 0;
-}
-
-nav {
-
+.main-menu {
+	@include justify-content(flex-end);
+	li {
+	}
 }
 
 header {
