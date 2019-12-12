@@ -1,11 +1,3 @@
-@mixin transition ($proporties) {
-  transition: $proporties;
-}
-
-@mixin transform ($proporties) {
-  transform: $proporties;
-}
-
 @mixin square ($value) {
   width: $value;
   height: $value;
@@ -13,19 +5,6 @@
 
 @mixin py ($value) {
   padding-top: $value!important;
-  padding-bottom: $value!important;
-}
-
-@mixin px ($value) {
-  padding-left: $value!important;
-  padding-right: $value!important;
-}
-
-@mixin pt ($value) {
-  padding-top: $value!important;
-}
-
-@mixin pb ($value) {
   padding-bottom: $value!important;
 }
 
@@ -42,86 +21,4 @@
 @mixin mx ($value) {
   margin-left: $value!important;
   margin-right: $value!important;
-}
-
-@mixin mt ($value) {
-  margin-top: $value!important;
-}
-
-@mixin mb ($value) {
-  margin-bottom: $value!important;
-}
-
-@mixin transition ($proporties) {
-  transition: $proporties;
-}
-
-@mixin transform ($proporties) {
-  transform: $proporties;
-}
-
-@mixin flex-box() {
-  display: flex;
-}
-
-@mixin flex($proporties) {
-  flex: $proporties;
-}
-
-@mixin flex-direction($direction) {
-  flex-direction: $direction;
-}
-
-@mixin flex-wrap($wrap) {
-  flex-wrap: $wrap;
-}
-
-@mixin justify-content($justify) {
-  justify-content: $justify;
-}
-
-@mixin align-content($align) {
-  align-content: $align;
-}
-
-@mixin align-items($align) {
-  align-items: $align;
-}
-
-@mixin box-shadow($value) {
-  box-shadow: $value;
-}
-
-@mixin box-sizing($value) {
-  box-sizing: $value;
-}
-
-@mixin query-sm {
-  @media (min-width: 576px) {
-    @content
-  }
-}
-
-@mixin query-md {
-  @media (min-width: 768px) {
-    @content
-  }
-}
-
-@mixin query-lg {
-  @media (min-width: 992px) {
-    @content
-  }
-}
-
-@mixin query-xl {
-  @media (min-width: 1200px) {
-    @content
-  }
-}
-
-@mixin query-xxl {
-  @media (min-width: 1920px) {
-    @content
-  }
 }
