@@ -90,13 +90,57 @@
 }
 
 .section-title {
-	
+	&::after {
+		content: "";
+		display: block;
+		height: 2px;
+		width: 200px;
+		background-color: $red;
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin: 0.5rem auto;
+	}
+}
+
+.about {
+	background-color: $vanilla;
+}
+
+.flip-box {
+	@include square(150px);
+	padding: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	&__inner {
+		width: 100%;
+		height: 100%;
+		position: relative;
+}
+	&__front, &__back {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		backface-visibility: hidden;
+	}
+}
+
+.footer {
+	background-color: $blue;
+	color: $white;
 }
 
 /********* MEDIA QERIES SM *********/
 
 @media (min-width: 576px) {
 	@include grid_sm;
+
+	.section-title {
+		&::after {
+			width: 50vw;
+		}
+	}	
 }
 
 /********* MEDIA QERIES MD *********/
@@ -110,6 +154,11 @@
 		}
 	}
 
+	.section-title {
+		&::after {
+			width: 25vw;
+		}
+	}	
 }
 
 /********* MEDIA QERIES LG *********/

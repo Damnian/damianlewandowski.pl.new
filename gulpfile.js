@@ -83,11 +83,11 @@ gulp.task('dest:js', function () {
 });
 
 gulp.task('img', function () {
-	return gulp.src('src/assets/img/*').pipe(gulp.dest('tmp/assets/img'))
+	return gulp.src('src/assets/img/**/*').pipe(gulp.dest('tmp/assets/img'))
 });
 
 gulp.task('dest:img', function () {
-	return gulp.src('src/assets/img/*')
+	return gulp.src('src/assets/img/**/*')
 		.pipe(imagemin([
 			pngquant({
 				quality: [0.7, 0.9],

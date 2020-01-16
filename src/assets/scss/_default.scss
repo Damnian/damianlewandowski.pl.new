@@ -37,16 +37,21 @@ strong {
 }
 
 section {
-  padding: 100px 0 100px 0;
+  padding: 100px 0;
+  height: 100vh;
+}
+
+footer {
+  padding: 15px 0;
 }
 
 p {
-  margin-top: 0 0 1rem 0;
+  margin: 0 0 1rem 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-size: 2rem;
-  margin: 0 0 1rem 0;
+  margin: 0 0 2rem 0;
 }
 
 hr {
