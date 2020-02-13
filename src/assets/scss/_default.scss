@@ -38,7 +38,7 @@ strong {
 
 section {
   padding: 100px 0;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 footer {
@@ -78,6 +78,12 @@ button, .btn {
     background-color: $blue;
     &:hover {
       background-color: darken($blue, 10%);
+    }
+  }
+  &--red {
+    background-color: $red;
+    &:hover {
+      background-color: darken($red, 10%);
     }
   }
 }
